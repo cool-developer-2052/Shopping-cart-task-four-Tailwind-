@@ -1,0 +1,11 @@
+<svg class="icon">
+  <use xlink:href="/assets/icons/icons.svg#ic-receipt-text"></use>
+</svg><svg class="icon">
+  <use xlink:href="/assets/icons/icons.svg#ic-trash"></use>
+</svg><svg class="icon">
+  <use xlink:href="/assets/icons/icons.svg#ic-cup"></use>
+</svg><svg class="icon">
+  <use xlink:href="/assets/icons/icons.svg#ic-presentation"></use>
+</svg><svg class="icon">
+  <use xlink:href="/assets/icons/icons.svg#ic-clock"></use>
+</svg>

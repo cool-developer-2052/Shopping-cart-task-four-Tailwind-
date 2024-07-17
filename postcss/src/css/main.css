@@ -1,0 +1,12 @@
+/* ---------- IMPORTS ----------*/
+@import url(/src/css/fontiran.css);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer utilities {
+    .-word-space-2px {
+        word-spacing: -2px;
+    }
+}

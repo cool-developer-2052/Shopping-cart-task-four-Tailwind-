@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="علیرضا ایرانی | Alireza Irani" />
+    <meta name="keywords" content="HTML, Tailwind, Alpinejs">
+    <meta name="description" content="پروژه سبد خرید با تیلویند | Shopping cart project with Tailwind" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ----------  Tailwind css link ---------- -->
+    <link rel="stylesheet" href="./build/tailwind.css" />
+    <title>Tailwind | Bootcamp task</title>
+  </head>
+  <body class="bg-stone-50">
+    <!-- ---------- Start coding (: ---------- -->
+    <!-- ---------- Cart section ---------- -->
+    <main>
+      <!-- ---------- Cart container ---------- -->
+      <div class="container xl:max-w-screen-xl">
+        <!-- ---------- Cart title ---------- -->
+        <h1 class="text-secondary-800 text-center md:text-right font-extrabold mt-24 -word-space-2px text-xl lg:text-2xl xl:text-3xl">سبد دوره های شما</h1>
+        <!-- ---------- Cart content ---------- -->
+        <section class="md:flex md:justify-center md:gap-x-4 lg:gap-x-14 xl:gap-x-20 mt-12">
+          <!-- ---------- Small devices > Cart content top | Large devices > Cart content right ---------- -->
+          <div
+            x-data="{ products : [
+              { id: 1, title: 'دوره حرفه ای متخصص ری اکت', price: '6,298,000', ownerName : 'صاحب محمدی', productName : 'react.js', productImage : 'img-card-reactjs.webp', ownerPicture : 'img-profile-picture-1.webp', productTime : '45 ساعت', productStudentsNumber : '+1300 دانشجو', productEpisodesNumber : '270 جلسه'},
+              { id: 2, title: 'دوره جامع نکست جی اس', price: '7,300,000', ownerName : 'علیرضا ایرانی', productName : 'next.js', productImage : 'img-card-nextjs.webp', ownerPicture : 'img-profile-picture-2.webp', productTime : '55 ساعت', productStudentsNumber : '+1040 دانشجو', productEpisodesNumber : '300 جلسه'},
+            ]}"
+            class="flex flex-col lg:flex-col gap-y-4 md:w-2/3 !max-w-[674px]">
+            <!-- ---------- Cart items (cards) ---------- -->
+            <template x-for="product in products" :key="product.id">
+              <a x-bind:href="'https://digitize.com/cart/courses/' + product.productName" x-bind:title="product.title">
+                <div class="bg-white flex xs:flex-col xs:gap-y-4 gap-x-3 lg:gap-x-8 rounded-[20px] p-3.5 lg:p-5 shadow-xs md:w-full lg:relative">
+                  <!-- ---------- Card image ---------- -->
+                  <div class="xs:w-full w-[118px] sm:w-[124px] lg:w-[167px]">
+                    <img class="w-full h-auto lg:h-[121px] rounded-[10px] object-cover" x-bind:src="'/assets/images/' + product.productImage" x-bind:title="product.productName" x-bind:alt="product.productName" />
+                  </div>
+                  <!-- ---------- Card content ---------- -->
+                  <div class="flex flex-col justify-center gap-y-3.5 sm:gap-y-6 lg:gap-y-4">
+                    <!-- Card title -->
+                    <h3 x-text="product.title" class="text-secondary-900 -word-space-2px w-40 sm:w-auto truncate font-extrabold xs:text-sm text-xs sm:text-base"></h3>
+                    <div class="flex">
+                      <!-- Product detail -->
+                      <div class="hidden lg:grid grid-cols-[repeat(2,_minmax(0,_max-content))] grid-rows-2 justify-start gap-x-6 gap-y-2.5">
+                        <div class="flex gap-x-1 w-max text-xs text-slate-600">
+                          <span>
+                            <svg class="icon size-4">
+                              <use xlink:href="/assets/icons/icons.svg#ic-clock"></use>
+                            </svg>
+                          </span>
+                          <span x-text="product.productTime"></span>
+                        </div>
+                        <div class="flex gap-x-1 w-max text-xs text-slate-600">
+                          <span>
+                            <svg class="icon size-4">
+                              <use xlink:href="/assets/icons/icons.svg#ic-clock"></use>
+                            </svg>
+                          </span>
+                          <span x-text="product.productStudentsNumber"></span>
+                        </div>
+                        <div class="flex gap-x-1 w-max text-xs text-slate-600">
+                          <span>
+                            <svg class="icon size-4">
+                              <use xlink:href="/assets/icons/icons.svg#ic-presentation"></use>
+                            </svg>
+                          </span>
+                          <span x-text="product.productEpisodesNumber"></span>
+                        </div>
+                        <div class="flex gap-x-1 w-max text-xs text-slate-600">
+                          <span>
+                            <svg class="icon size-4">
+                              <use xlink:href="/assets/icons/icons.svg#ic-cup"></use>
+                            </svg>
+                          </span>
+                          <span>چالش های هفتگی</span>
+                        </div>
+                      </div>
+                      <!-- Card owner profile -->
+                      <div class="hidden lg:flex absolute gap-x-2 left-14 top-5 min-w-32 max-w-32">
+                        <!-- Owner image -->
+                        <div class="size-[36px] rounded-xl overflow-hidden">
+                          <img class="!w-10 !h-10 object-cover" x-bind:src="'/assets/images/' + product.ownerPicture" alt="مدرس" />
+                        </div>
+                        <!-- Owner info -->
+                        <div class="flex flex-col gap-y-0.5 justify-center overflow-hidden">
+                          <span class="text-secondary-200 text-[7px] font-medium">مدرس دوره</span>
+                          <h4 x-text="product.ownerName" class="text-secondary-900 text-[12px] font-extrabold truncate"></h4>
+                        </div>
+                      </div>
+                      <!-- Card price and Remove card -->
+                      <div class="flex items-center gap-x-2 lg:absolute lg:left-5 lg:bottom-7">
+                        <!-- Card price -->
+                        <div class="flex items-center gap-x-1 sm:gap-x-1.5">
+                          <h4 x-text="product.price" class="text-primary-900 font-extrabold text-base sm:text-lg"></h4>
+                          <span class="text-secondary-200 font-extrabold text-xs lg:text-sm">تومان</span>
+                        </div>
+                        <!-- Remove card -->
+                        <div class="sm:mr-2.5">
+                          <span class="grid place-items-center size-7 lg:size-8 rounded-xl border border-secondary-100 hover:bg-secondary-100 transition-colors">
+                            <svg class="icon size-4 lg:size-5">
+                              <use xlink:href="/assets/icons/icons.svg#ic-trash"></use>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </template>
+          </div>
+          <!-- ---------- Small devices > Cart content bottom | Large devices > Cart content left ---------- -->
+          <div class="w-full md:w-[313px]">
+            <!-- ---------- Total price card ---------- -->
+            <div class="bg-white rounded-[20px] shadow-xs mt-14 md:mt-0">
+              <!-- ---------- Total price header ---------- -->
+              <div class="flex gap-x-2 items-center xs:px-4 px-7 py-6 border-b border-secondary-100/30">
+                <!-- title -->
+                <span>
+                  <svg class="icon size-5">
+                    <use xlink:href="/assets/icons/icons.svg#ic-receipt-text"></use>
+                  </svg>
+                </span>
+                <h4 class="text-secondary-800 font-extrabold text-base">پرداخت</h4>
+              </div>
+              <!-- ---------- Total price body ---------- -->
+              <div class="grid gap-y-6 md:gap-y-7 items-center xs:px-4 px-7 py-6 border-b border-secondary-100/30">
+                <!-- detail -->
+                <div class="flex justify-between items-center font-extrabold text-sm sm:text-base md:text-sm">
+                  <span class="text-secondary-700 -word-space-2px"> جمع دوره ها </span>
+                  <span class="text-primary-900">13.598.000 +</span>
+                </div>
+                <div class="flex justify-between items-center font-extrabold text-sm sm:text-base md:text-sm">
+                  <span class="text-secondary-700 -word-space-2px">تخفیف ها</span>
+                  <span class="text-danger">750.000 -</span>
+                </div>
+              </div>
+              <!-- ---------- Total price footer ---------- -->
+              <div class="grid gap-y-7 xs:px-4 px-7 py-6 overflow-hidden">
+                <!-- Discount code -->
+                <div class="text-center">
+                  <a class="text-secondary-700 w-max p-2 -word-space-2px font-bold text-xs sm:text-sm md:text-xs hover:text-primary-900 hover:underline underline-offset-4 transition-all" href="#">کد تخفیف دارم!</a>
+                </div>
+                <!-- button -->
+                <button class="block">
+                  <a class="flex items-center justify-center rounded-[20px] p-4 w-full bg-primary-900 hover:bg-blue-700 transition-all duration-300 text-white font-bold text-lg xs:text-sm sm:text-xl md:text-base" href="#">
+                    <span class="xs:ml-1.5 ml-2.5 md:ml-1.5">پرداخت</span>
+                    <span x-text="product.title">12.848.000</span>
+                    <span class="text-xs xs:text-[10px] mr-1">تومان</span>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+  <!-- ----------  Alpine js CDN ---------- -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</html>
